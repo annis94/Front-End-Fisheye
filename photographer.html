@@ -26,17 +26,18 @@
 </div>
       </div>
 
-     <div class="sort-dropdown">
-    <label class="text-sort-dropdown" for="sort-options">Trier par </label>
-    <div class="dropdown">
-        <div class="dropdown-selected">Popularité <span class="arrow">▼</span></div>
-        <div class="dropdown-options" style="display: none;">
-            <div class="dropdown-item" data-value="popularity">Popularité</div>
-            <div class="dropdown-item" data-value="date">Date</div>
-            <div class="dropdown-item" data-value="title">Titre</div>
-        </div>
-    </div> 
-</div>
+      <div class="sort-dropdown">
+        <label class="text-sort-dropdown" for="sort-options">Trier par </label>
+        <div class="dropdown" role="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown()">
+            <div class="dropdown-selected">Popularité <span class="arrow">▼</span></div>
+            <div class="dropdown-options" role="listbox" style="display: none;">
+                <div class="dropdown-item" data-value="popularity" role="option" tabindex="0">Popularité</div>
+                <div class="dropdown-item" data-value="date" role="option" tabindex="0">Date</div>
+                <div class="dropdown-item" data-value="title" role="option" tabindex="0">Titre</div>
+            </div>
+        </div> 
+    </div>
+    
 
     
     
@@ -48,42 +49,51 @@
     </main>
 
   
-    
-    <div id="lightbox" class="lightbox">
-      <button class="lightbox-close" onclick="closeLightbox()">✖</button>
-      <button class="lightbox-prev" onclick="prevMedia()">⬅</button>
-      <button class="lightbox-next" onclick="nextMedia()">➡</button>
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Galerie de médias en plein écran" aria-modal="true" aria-hidden="true">
+      <button class="lightbox-close" onclick="closeLightbox()" role="button" aria-label="Fermer la lightbox">✖</button>
+      <button class="lightbox-prev" onclick="prevMedia()" role="button" aria-label="Média précédent">⬅</button>
+      <button class="lightbox-next" onclick="nextMedia()" role="button" aria-label="Média suivant">➡</button>
       <div class="lightbox-content"></div>
   </div>
   
 
-  <div id="contact_modal">
+  <div class="photographer-likes">
+    <span id="total-likes" aria-label="Nombre total de likes">0</span>
+    <span class="total-likes-icon"><i class="fas fa-heart"></i></span>
+    <span id="daily-rate">€/jour</span>
+</div>
+
+  
+
+  <div id="contact_modal" role="dialog" aria-labelledby="modal-photographer-name" aria-modal="true">
     <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
-      </header>
-      <form>
-        <div>
-          <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom" required />
-        </div>
-        <div>
-          <label for="nom">Nom</label>
-          <input type="text" id="nom" name="nom" required />
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
-        <button class="contact_button contact_button--submit">Envoyer</button>
-      </form>
+        <header>
+            <h2 id="modal-photographer-name">Contactez-moi</h2>
+            <img src="assets/icons/close.svg" onclick="closeModal()" role="button" aria-label="Fermer la modale" />
+        </header>
+        
+        <form>
+            <div>
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required />
+            </div>
+            <div>
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div>
+                <label for="message">Votre message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="contact_button contact_button--submit" role="button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+        </form>
     </div>
-  </div>
+</div>
+
 
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

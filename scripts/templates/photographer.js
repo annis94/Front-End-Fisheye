@@ -9,10 +9,11 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
        
-                // Creation de lien unique pour chaque photographe en utilisant son ID
+                // Création de lien unique pour chaque photographe en utilisant son ID
                 const link = document.createElement('a');
                 link.setAttribute('href', `photographer.html?id=${id}`);
                 link.setAttribute('aria-label', `Voir la page de ${name}`);
+                link.setAttribute('role', 'link');
 
                 const img = document.createElement('img');
                 img.setAttribute('src', picture);

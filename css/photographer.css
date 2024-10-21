@@ -9,7 +9,15 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    margin-top: 3rem;
 }
+
+.logo {
+    height: 50px;
+    margin-top: 4rem;
+    margin-left: 6.5rem;
+}
+
 .photographer-info {
     display: flex;
     flex-direction: column;
@@ -49,6 +57,10 @@ h1 {
     margin-bottom: 10px;
     
 }
+
+a{
+    text-decoration: none ;
+}
 .contact_button.contact_button--modal {
     font-size: 20px;
     font-weight: bold;
@@ -78,10 +90,11 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     position: relative; 
-    margin-top: 10px; 
+    margin-top: 1rem; 
     transform: none; 
     left: auto; 
     transition: background-color 0.3s ease; 
+    width: 24%;
 
 }
 
@@ -95,7 +108,7 @@ h1 {
 }
 
 #contact_modal {
-    display: none; /* Cacher par défaut */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -107,16 +120,22 @@ h1 {
     z-index: 1000;
 }
 
+/* Modal content */
 .modal {
     background-color: #DB8876;
     border-radius: 5px;
-    width: 50%;
-    padding: 35px;
-    position: relative; 
-    left: 23%;
-    top: 2%;
+    width: 40%; 
+    padding: 20px;
+    max-height: 80%; 
+    overflow-y: auto; 
+    top: 10%; 
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
 }
 
+/* Modal header */
 .modal header {
     display: flex;
     justify-content: space-between;
@@ -124,62 +143,53 @@ h1 {
     width: 100%;
 }
 
-.modal header h2 {
-    font-size: 64px;
+.modal header h2 .modal header h2, #modal-photographer-name {
+    
+    font-size: 1.5rem; /* Utilise rem pour rendre la taille de police flexible */
     font-weight: normal;
     text-align: center;
     flex: 1; 
 }
 
+/* Bouton de fermeture */
 .modal header img {
     cursor: pointer;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     width: 24px;
     height: 24px;
 }
 
-form textarea {
-    resize: none;
-    width: 100%;
-    padding-bottom: 8rem; 
-}
-
-#contact_modal.active {
-    display: flex;
-}
-
-a{
-    text-decoration: none;
-}
-
+/* Formulaire */
 form {
     display: flex;
-    width: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
 }
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
 }
 
-form div {
-    display: flex;
-    flex-direction: column;
+form input, form textarea {
     width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
+    padding: 10px;
+    margin-bottom: 20px;
     border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
 }
+
+/* Textarea */
+form textarea {
+    resize: none;
+    height: 150px; /* Ajuste la hauteur pour mieux s'adapter aux petits écrans */
+}
+
+
 
 
 /* Media Section */
@@ -276,7 +286,7 @@ form input {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #fff;
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -299,7 +309,7 @@ form input {
     border: none;
     padding: 10px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 54px;
     color: #901C1C;
     transform: translateY(-50%);
 }
@@ -342,14 +352,17 @@ form input {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     position: relative;
     cursor: pointer;
-    border-radius: 5px;
-}
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    }
 
 .dropdown-selected {
     padding: 8px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .dropdown-options {
@@ -362,13 +375,17 @@ form input {
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 3px solid rgba(244, 241, 241, 0.2);
+
+
 }
 
 .dropdown-item {
     padding: 8px 10px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid rgba(244, 241, 241, 0.2);
 }
 
 .dropdown-item:last-child {
@@ -394,6 +411,39 @@ form input {
 }
 
 
+.photographer-likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d77b6e; 
+    padding: 10px 28px;
+    border-radius: 15px; 
+    font-family: 'DM Sans', sans-serif; 
+    font-size: 1.5rem;
+    color: #000; 
+    width: 13%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+#total-likes {
+    display: flex;
+    align-items: center;
+}
+
+.total-likes-icon {
+    margin-left: 5px;
+}
+
+#daily-rate {
+    margin-left: 20px;
+}
+
+i.fas.fa-heart {
+    color: #000; 
+    margin-left: 5px;
+}
 
 
 
@@ -409,10 +459,9 @@ form input {
         margin-top: 6rem;
     }
     .photograph-header {
-        flex-direction: column-reverse;
-        gap: 10px;
-        padding: 180px 50px 19px;
-   
+            flex-direction: column-reverse;
+            gap: 10px;
+            padding: 89px 57px 19px; 
     }
 
     #photograph-info {
@@ -421,8 +470,23 @@ form input {
         display: block;
         text-align: center;
 
-    }
+   }
 
+   .contact_button.contact_button--modal {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 20px 20px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease; 
+    top: 18rem;
+}
     h1 {
         color: rgba(211, 87, 60, 1);
         font-size: 40px;
@@ -436,20 +500,29 @@ form input {
         order: 1; 
     }
 
-    .contact_button.contact_button--modal {
-        font-size: 20px;
-        font-weight: bold;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        background-color: #901C1C;
-        border-radius: 5px;
-        cursor: pointer;
-        position: static; 
-        margin-top: 10px; 
-        transform: none; 
-        left: auto; 
+  
+
+    .modal {
+        width: 40%; 
+        position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     }
+
+    .modal header h2 {
+        font-size: 1.2rem;
+    }
+    
+    form label {
+        font-size: 1rem;
+    }
+
+    .contact_button.contact_button--submit {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
 
     
 
@@ -472,6 +545,18 @@ form input {
 
     /*lightbox*/
     
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+        position: absolute;
+        top: 50%;
+        background-color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #901C1C;
+        transform: translateY(-50%);
+    }
+
     .lightbox-close {
         right: 5rem;
         top: 4rem;
@@ -479,7 +564,7 @@ form input {
     }
     
  
-}
+
 
 
 
@@ -513,21 +598,26 @@ form input {
     
     
     
-        .contact_button.contact_button--modal {
-            width: 11rem;
-            font-weight: bold;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            background-color: #901C1C;
-            border-radius: 5px;
-            cursor: pointer;
-            position: static;
-            margin-top: 10px;
-            transform: none;
-            margin-top: 26px; 
-    
-       }
+    .modal {
+        width: 75%; 
+        position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    }
+
+    .modal header h2 {
+        font-size: 1rem;
+    }
+
+    form label {
+        font-size: 0.9rem;
+    }
+
+    .contact_button.contact_button--submit {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
     
     
         h1 {
@@ -571,6 +661,18 @@ form input {
         box-sizing: border-box;
         color: #901C1C;
         font-size: medium;
+    }
+
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+        position: absolute;
+        top: 50%;
+        background-color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #901C1C;
+        transform: translateY(-50%);
     }
 
     .lightbox-next {

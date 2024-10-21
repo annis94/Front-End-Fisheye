@@ -21,8 +21,9 @@ h1 {
 
 .logo {
     height: 50px;
+    margin-top: 31px;
     margin-left: 100px;
-}
+ }
 
 .photographer_section {
     display: grid;
@@ -42,9 +43,7 @@ h1 {
     padding: 20px;
 }
 
-.photographer_section article:hover {
-    transform: scale(1.05);
-}
+
 
 .photographer_section article img {
     height: 200px;
@@ -56,7 +55,7 @@ h1 {
 
 .photographer_section article h2 {
     color: rgba(211, 87, 60, 1);
-    font-size: 24px;
+    font-size: 34px;
     font-weight: bold;
     margin: 10px 0;
     
