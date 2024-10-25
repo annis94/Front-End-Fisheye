@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/photographer.css">
@@ -8,92 +8,82 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="logo"/>
+      <a href="index.html" aria-label="Retour à la page d'accueil Fisheye">
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
+      </a>
     </header>
 
-    
     <main id="main">
       <div class="photograph-header">
-        <section id="photograph-info">
-
+        <section id="photograph-info" aria-label="Informations sur le photographe">
+          <!-- Informations sur le photographe ici -->
         </section>
-        <button class="contact_button contact_button--modal" onclick="displayModal()">Contactez-moi</button>
-        <div id="photo-profil">
-</div>
+        <button class="contact_button contact_button--modal" onclick="displayModal()" aria-label="Ouvrir le formulaire de contact">Contactez-moi</button>
+        <div id="photo-profil"></div>
       </div>
 
       <div class="sort-dropdown">
         <label class="text-sort-dropdown" for="sort-options">Trier par </label>
-        <div class="dropdown" role="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown()">
-            <div class="dropdown-selected">Popularité <span class="arrow">▼</span></div>
-            <div class="dropdown-options" role="listbox" style="display: none;">
-                <div class="dropdown-item" data-value="popularity" role="option" tabindex="0">Popularité</div>
-                <div class="dropdown-item" data-value="date" role="option" tabindex="0">Date</div>
-                <div class="dropdown-item" data-value="title" role="option" tabindex="0">Titre</div>
-            </div>
+        <div class="dropdown" role="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown()" aria-label="Choisir un critère de tri">
+          <div class="dropdown-selected">Popularité <span class="arrow">▼</span></div>
+          <div class="dropdown-options" role="listbox" style="display: none;">
+            <div class="dropdown-item" data-value="popularity" role="option" tabindex="0" aria-label="Trier par popularité">Popularité</div>
+            <div class="dropdown-item" data-value="date" role="option" tabindex="0" aria-label="Trier par date">Date</div>
+            <div class="dropdown-item" data-value="title" role="option" tabindex="0" aria-label="Trier par titre">Titre</div>
+          </div>
         </div> 
-    </div>
-    
-
-    
-    
-    
+      </div>
       
-      <section class="media-section">
-      </section>
+      <section class="media-section" aria-label="Section des médias">
 
+      </section>
     </main>
 
-  
     <div id="lightbox" class="lightbox" role="dialog" aria-label="Galerie de médias en plein écran" aria-modal="true" aria-hidden="true">
       <button class="lightbox-close" onclick="closeLightbox()" role="button" aria-label="Fermer la lightbox">✖</button>
       <button class="lightbox-prev" onclick="prevMedia()" role="button" aria-label="Média précédent">⬅</button>
       <button class="lightbox-next" onclick="nextMedia()" role="button" aria-label="Média suivant">➡</button>
       <div class="lightbox-content"></div>
-  </div>
-  
+    </div>
 
-  <div class="photographer-likes">
-    <span id="total-likes" aria-label="Nombre total de likes">0</span>
-    <span class="total-likes-icon"><i class="fas fa-heart"></i></span>
-    <span id="daily-rate">€/jour</span>
-</div>
+    <div class="photographer-likes" aria-label="Section des likes et tarif journalier">
+      <span id="total-likes" aria-label="Nombre total de likes">0</span>
+      <span class="total-likes-icon" aria-hidden="true"><i class="fas fa-heart"></i></span>
+      <span id="daily-rate" aria-label="Tarif journalier">€/jour</span>
+    </div>
 
-  
-
-  <div id="contact_modal" role="dialog" aria-labelledby="modal-photographer-name" aria-modal="true">
-    <div class="modal">
+    <div id="contact_modal" role="dialog" aria-labelledby="modal-photographer-name" aria-modal="true">
+      <div class="modal">
         <header>
-            <h2 id="modal-photographer-name">Contactez-moi</h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()" role="button" aria-label="Fermer la modale" />
+          <h2 id="modal-photographer-name">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" role="button" aria-label="Fermer la modale" />
         </header>
         
-        <form onsubmit="validateForm(event)">
+        <form onsubmit="validateForm(event)" aria-label="Formulaire de contact">
           <div>
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" required />
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" required />
           </div>
           <div>
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" required />
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required />
           </div>
           <div>
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
           </div>
           <div>
-              <label for="message">Votre message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="contact_button contact_button--submit" role="button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
-      </form>      
+        </form>
+      </div>
     </div>
-</div>
-
 
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
