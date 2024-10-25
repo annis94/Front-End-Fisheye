@@ -2,6 +2,53 @@
 let media = [];
 const photographerId = new URLSearchParams(window.location.search).get('id');
 
+// ===== Classe MediaFactory pour créer des objets médias =====
+class MediaFactory {
+    static createMedia(mediaData) {
+        if (mediaData.image) {
+            return new ImageMedia(mediaData);
+        } else if (mediaData.video) {
+            return new VideoMedia(mediaData);
+        } else {
+            throw new Error("Type de média inconnu");
+        }
+    }
+}
+
+// ===== Classe pour les médias de type image =====
+class ImageMedia {
+    constructor(data) {
+        this.image = data.image;
+        this.title = data.title;
+        this.photographerId = data.photographerId;
+        this.likes = data.likes;
+        this.hasLiked = data.hasLiked || false;
+    }
+
+    getMediaDOM() {
+        return `
+            <img src="../../assets/images/media/${this.photographerId}/${this.image}" alt="${this.title}" class="clickable" tabindex="0" role="button">
+        `;
+    }
+}
+
+// ===== Classe pour les médias de type vidéo =====
+class VideoMedia {
+    constructor(data) {
+        this.video = data.video;
+        this.title = data.title;
+        this.photographerId = data.photographerId;
+        this.likes = data.likes;
+        this.hasLiked = data.hasLiked || false;
+    }
+
+    getMediaDOM() {
+        return `
+            <video controls tabindex="0"><source src="../../assets/images/media/${this.photographerId}/${this.video}" type="video/mp4"></video>
+        `;
+    }
+}
+
 // ===== Récupération et Affichage des Données =====
 async function getPhotographerData(id) {
     try {
@@ -12,7 +59,7 @@ async function getPhotographerData(id) {
         const photographer = data.photographers.find(p => p.id == id);
         if (!photographer) throw new Error("Photographe non trouvé.");
 
-        media = data.media.filter(item => item.photographerId == id);
+        media = data.media.filter(item => item.photographerId == id).map(item => MediaFactory.createMedia(item));
         if (media.length === 0) throw new Error("Aucun média trouvé.");
 
         displayPhotographerInfo(photographer);  // Affichage des infos du photographe
@@ -40,14 +87,13 @@ function displayPhotographerInfo({ name, city, country, tagline, portrait, price
 // ===== Affichage des Médias du Photographe =====
 function displayPhotographerMedia(media) {
     const mediaSection = document.querySelector('.media-section');
-    mediaSection.innerHTML = media.map(({ image, video, photographerId, title, likes }, index) => `
+    mediaSection.innerHTML = media.map((mediaItem, index) => `
         <article class="media-item">
-            ${image ? `<img src="../../assets/images/media/${photographerId}/${image}" alt="${title}" class="clickable" tabindex="0" role="button">`
-                    : `<video controls tabindex="0"><source src="../../assets/images/media/${photographerId}/${video}" type="video/mp4"></video>`}
+            ${mediaItem.getMediaDOM()}
             <div class="media-info-container">
-                <h3>${title}</h3>
+                <h3>${mediaItem.title}</h3>
                 <div class="likes-container">
-                    <p class="likes-count">${likes}</p>
+                    <p class="likes-count">${mediaItem.likes}</p>
                     <span class="like-icon" tabindex="0"><i class="fas fa-heart"></i></span>
                 </div>
             </div>
@@ -84,10 +130,8 @@ let currentIndex = 0;
 
 function openLightbox(index) {
     currentIndex = index;
-    const { image, video, photographerId, title } = media[currentIndex];
-    document.querySelector('.lightbox-content').innerHTML = image 
-        ? `<img src="../../assets/images/media/${photographerId}/${image}" alt="${title}" tabindex="0">`
-        : `<video controls tabindex="0"><source src="../../assets/images/media/${photographerId}/${video}" type="video/mp4"></video>`;
+    const mediaItem = media[currentIndex];
+    document.querySelector('.lightbox-content').innerHTML = mediaItem.getMediaDOM();
     document.getElementById('lightbox').style.display = 'flex';  // Affichage de la lightbox
     trapFocus(document.getElementById('lightbox'));  // Gestion du focus dans la lightbox
 }

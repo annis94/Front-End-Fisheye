@@ -1,7 +1,7 @@
 // Fonction pour récupérer les données des photographes
 async function getPhotographers() {
     try {
-        //  Récupération des données depuis le fichier JSON en utilisant fetch
+        // Récupération des données depuis le fichier JSON en utilisant fetch
         const response = await fetch('../../data/photographers.json'); 
         
         // Vérification si la requête a échoué

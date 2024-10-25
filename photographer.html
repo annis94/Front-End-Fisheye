@@ -72,25 +72,25 @@
             <img src="assets/icons/close.svg" onclick="closeModal()" role="button" aria-label="Fermer la modale" />
         </header>
         
-        <form>
-            <div>
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" required />
-            </div>
-            <div>
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" required />
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-            </div>
-            <div>
-                <label for="message">Votre message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button class="contact_button contact_button--submit" role="button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
-        </form>
+        <form onsubmit="validateForm(event)">
+          <div>
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required />
+          </div>
+          <div>
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required />
+          </div>
+          <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="contact_button contact_button--submit" role="button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+      </form>      
     </div>
 </div>
 
