@@ -93,7 +93,7 @@ function displayPhotographerMedia(media) {
         <article class="media-item">
             ${mediaItem.getMediaDOM()}
             <div class="media-info-container">
-                <h3>${mediaItem.title}</h3>
+                <h3 tabindex="0" aria-label="Titre du média : ${mediaItem.title}">${mediaItem.title}</h3>
                 <div class="likes-container">
                     <p class="likes-count">${mediaItem.likes}</p>
                     <span class="like-icon" tabindex="0"><i class="fas fa-heart"></i></span>
@@ -102,14 +102,15 @@ function displayPhotographerMedia(media) {
         </article>
     `).join('');
 
-    // Ajout des événements pour gérer les likes et la lightbox
+    // Ajout des événements pour les likes et la lightbox (inchangés)
     document.querySelectorAll('.like-icon').forEach((icon, index) => {
-        icon.addEventListener('click', () => handleLike(index, icon));       // Gestion des likes au clic
-        icon.addEventListener('keydown', e => e.key === 'Enter' && handleLike(index, icon)); // Gestion des likes au clavier
+        icon.addEventListener('click', () => handleLike(index, icon));
+        icon.addEventListener('keydown', e => e.key === 'Enter' && handleLike(index, icon));
     });
 
-    addLightboxEvents();  // Ajout des événements pour la lightbox
+    addLightboxEvents();
 }
+
 
 // ===== Gestion des Likes =====
 function handleLike(index, icon) {
