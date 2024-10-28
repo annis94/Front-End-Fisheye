@@ -22,6 +22,7 @@ class ImageMedia {
         this.title = data.title;
         this.photographerId = data.photographerId;
         this.likes = data.likes;
+        this.date = data.date;
         this.hasLiked = data.hasLiked || false;
     }
 
@@ -39,6 +40,7 @@ class VideoMedia {
         this.title = data.title;
         this.photographerId = data.photographerId;
         this.likes = data.likes;
+        this.date = data.date; 
         this.hasLiked = data.hasLiked || false;
     }
 
@@ -217,11 +219,18 @@ function updateDropdownSelection(selectedOption) {
 
 // ===== Fonction de Tri des Médias =====
 function sortMedia(criterion) {
-    media.sort((a, b) => criterion === 'popularity' ? b.likes - a.likes :
-                         criterion === 'date' ? new Date(b.date) - new Date(a.date) :
-                         a.title.localeCompare(b.title));
-    displayPhotographerMedia(media);  // Réaffichage des médias après tri
+    media.sort((a, b) => {
+        if (criterion === 'popularity') {
+            return b.likes - a.likes;
+        } else if (criterion === 'date') {
+            return new Date(b.date) - new Date(a.date); // Conversion des dates en objets Date
+        } else if (criterion === 'title') {
+            return a.title.localeCompare(b.title);
+        }
+    });
+    displayPhotographerMedia(media);  // Réaffichage des médias après le tri
 }
+
 
 // ===== Affichage des Messages d'Erreur =====
 function displayErrorMessage(message) {
